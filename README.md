@@ -1,6 +1,6 @@
 # bro/q
 
-![icon](https://github.bus.zalan.do/mrandi/bro-q/blob/master/src/pages/assets/icon128.png?raw=true)
+![icon](src/pages/assets/icon128.png)
 
 Chrome Extension for JSON formatting and [jq](https://stedolan.github.io/jq/) filtering in your Browser.
 
