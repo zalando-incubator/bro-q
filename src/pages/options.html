@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="../css/options.css">
+    <link type="text/css" rel="stylesheet" href="../css/skeleton.css">
+    <title>Options - bro/q</title>
+</head>
+
+<body>
+    <div class="container">
+        <img class="logo" src="./assets/icon128.png">
+        <div class="form-box">
+            <h1>Options</h1>
+            <form>
+                <div class="form-group">
+                    <label class="control-label" for="theme">Theme</label>
+                    <select id="theme">
+                        <option value="Default">Default</option>
+                        <option value="Monokai">Monokai</option>
+                        <option value="Monokai">Ambiance</option>
+                        <option value="Chaos">Chaos</option>
+                        <option value="Chrome">Chrome</option>
+                        <option value="Clouds">Clouds</option>
+                        <option value="Clouds_midnight">Clouds_midnight</option>
+                        <option value="Cobalt">Cobalt</option>
+                        <option value="Crimson_editor">Crimson_editor</option>
+                        <option value="Dawn">Dawn</option>
+                        <option value="Dracula">Dracula</option>
+                        <option value="Dreamweaver">Dreamweaver</option>
+                        <option value="Eclipse">Eclipse</option>
+                        <option value="Github">Github</option>
+                        <option value="Gob">Gob</option>
+                        <option value="Gruvbox">Gruvbox</option>
+                        <option value="Idle_fingers">Idle_fingers</option>
+                        <option value="Iplastic">Iplastic</option>
+                        <option value="Katzenmilch">Katzenmilch</option>
+                        <option value="Kr_theme">Kr_theme</option>
+                        <option value="Kuroir">Kuroir</option>
+                        <option value="Merbivore">Merbivore</option>
+                        <option value="Merbivore_soft">Merbivore_soft</option>
+                        <option value="Mono_industrial">Mono_industrial</option>
+                        <option value="Pastel_on_dark">Pastel_on_dark</option>
+                        <option value="Solarized_dark">Solarized_dark</option>
+                        <option value="Solarized_light">Solarized_light</option>
+                        <option value="Sqlserver">Sqlserver</option>
+                        <option value="Terminal">Terminal</option>
+                        <option value="Textmate">Textmate</option>
+                        <option value="Tomorrow">Tomorrow</option>
+                        <option value="Tomorrow_night">Tomorrow_night</option>
+                        <option value="Tomorrow_night_blue">Tomorrow_night_blue</option>
+                        <option value="Tomorrow_night_bright">Tomorrow_night_bright</option>
+                        <option value="Tomorrow_night_eighties">Tomorrow_night_eighties</option>
+                        <option value="Twilight">Twilight</option>
+                        <option value="Vibrant_ink">Vibrant_ink</option>
+                        <option value="Xcode">Xcode</option>
+                    </select>
+                </div>
+
+                <label class="control-label" for="font-size">Font Size</label>
+                <input id="font-size" type="number" required="required" />
+
+                <label class="control-label" for="font-family">Font Family</label>
+                <input id="font-family" type="text" required="required" />
+
+
+                <!-- editor -->
+                <div class="checkbox">
+                    <label>
+                        <input id="highlightActiveLine" type="checkbox">
+                        <span class="checkbox-material">
+                            <span class="check"></span>
+                        </span> highlight active line
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input id="highlightSelectedWord" type="checkbox">
+                        <span class="checkbox-material">
+                            <span class="check"></span>
+                        </span> highlight selected word
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input id="readOnly" type="checkbox">
+                        <span class="checkbox-material">
+                            <span class="check"></span>
+                        </span> read only
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input id="autoScrollEditorIntoView" type="checkbox">
+                        <span class="checkbox-material">
+                            <span class="check"></span>
+                        </span> autoscroll editor into view
+                    </label>
+                </div>
+                <!--<div class="checkbox">
+                    <label>
+                        <input id="useSoftTabs" type="checkbox">
+                        <span class="checkbox-material">
+                            <span class="check"></span>
+                        </span> useSoftTabs
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input id="navigateWithinSoftTabs" type="checkbox">
+                        <span class="checkbox-material">
+                            <span class="check"></span>
+                        </span> navigateWithinSoftTabs
+                    </label>
+                </div>-->
+                <!-- renderer -->
+                <div class="checkbox">
+                    <label>
+                        <input id="showLineNumbers" type="checkbox">
+                        <span class="checkbox-material">
+                            <span class="check"></span>
+                        </span> show line numbers
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input id="showGutter" type="checkbox">
+                        <span class="checkbox-material">
+                            <span class="check"></span>
+                        </span> show gutter
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input id="displayIndentGuides" type="checkbox">
+                        <span class="checkbox-material">
+                            <span class="check"></span>
+                        </span> display indent guides
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input id="fixedWidthGutter" type="checkbox">
+                        <span class="checkbox-material">
+                            <span class="check"></span>
+                        </span> fixed width gutter
+                    </label>
+                </div>
+                <!-- mouseHandler -->
+                <div class="checkbox">
+                    <label>
+                        <input id="dragEnabled" type="checkbox">
+                        <span class="checkbox-material">
+                            <span class="check"></span>
+                        </span> drag enabled
+                    </label>
+                </div>
+
+                <div class="button-container">
+                    <button id="save-btn" class="button" type="button">
+                        <span>Save</span>
+                    </button>
+                    <button id="default-btn" class="button" type="button">
+                        <span>Set Default</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../js/vendor.js"></script>
+    <script type="text/javascript" src="../js/options.js"></script>
+</body>
+
+</html>
