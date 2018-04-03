@@ -25,7 +25,7 @@ If you want to contribute, please, read our [Contributing](CONTRIBUTING.md) guid
 
 ## How to install
 
-1. Download the latest [release-XXX](https://github.bus.zalan.do/mrandi/bro-q/releases/latest/) version and extract the code.
+1. Download the latest [release-XXX](https://github.bus.zalan.do/zalando-incubator/bro-q/releases/latest/) version and extract the code.
 2. Enable `Developer mode` in `Chrome Settings > Extensions`
 3. Click on `Load unpacked extension...` and select the `release-XXX` folder.
 4. In the `Options` you can customize the extension.
