@@ -59,6 +59,7 @@ export function renderCss() {
 }
 
 export function updateOutput(output) {
+  output = JSON.stringify(JSON.parse(output), null, 2);
   const editor = ace.edit('json-editor-output');
   editor.setValue(output);
   editor.clearSelection();
