@@ -8,5 +8,3 @@ approvals:
     # a public zalando org member
     orgs:
       - zalando
-    # a collaborator of the repo
-    collaborators: true
