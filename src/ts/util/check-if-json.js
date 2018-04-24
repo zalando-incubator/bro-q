@@ -8,10 +8,9 @@ function allTextNodes(nodes) {
 
 function getPreWithSource() {
   var childNodes = document.body.childNodes;
-  var preNode = childNodes[0];
 
-  if (childNodes.length === 1 && preNode.nodeName === "PRE") {
-    return preNode;
+  if (childNodes.length === 1 && childNodes[0].nodeName === "PRE") {
+    return childNodes[0];
   }
   return null
 }
