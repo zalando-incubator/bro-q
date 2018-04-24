@@ -637,6 +637,8 @@ button:active {
 
 #editorDiv {
   height: 85%;
+  width: 100%;
+  display: inline-block;
 }
 
 #json-editor-input {
