@@ -66,9 +66,13 @@ function checkFilter() {
   filter = $('#filter')
     .val()
     .toString();
-  port.postMessage({ json: input, filter: filter });
-  filter = encodeURIComponent(filter);
-  window.location.hash = 'broq-filter=' + filter;
+  if(filter != '.') {
+    port.postMessage({ json: input, filter: filter });
+    filter = encodeURIComponent(filter);
+    window.location.hash = 'broq-filter=' + filter;
+  } else if(window.location.hash.includes('#broq-filter=')) {
+    history.pushState("", document.title, window.location.pathname + window.location.search);
+  }
 }
 
 document.addEventListener('DOMContentLoaded', onLoad, false);
