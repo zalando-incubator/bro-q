@@ -5142,9 +5142,9 @@ ts-clipboard@^1.0.16:
   version "1.0.16"
   resolved "https://registry.yarnpkg.com/ts-clipboard/-/ts-clipboard-1.0.16.tgz#f3286e5ef8c8937acfd58d01a779eb1e61d6c315"
 
-ts-loader@~4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/ts-loader/-/ts-loader-4.1.0.tgz#6216e75600941df3270bc4a7125e20aefb2dc5ea"
+ts-loader@~4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/ts-loader/-/ts-loader-4.3.0.tgz#4e3ba172783d1256d3a23bdfadde011a795fae9e"
   dependencies:
     chalk "^2.3.0"
     enhanced-resolve "^4.0.0"
