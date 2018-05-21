@@ -3032,9 +3032,9 @@ isurl@^1.0.0-alpha5:
     has-to-string-tag-x "^1.2.0"
     is-object "^1.0.1"
 
-jq-web@^0.2.1:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/jq-web/-/jq-web-0.2.1.tgz#4f13f1bb6327109595efc2844c1a778bda64faa3"
+jq-web@^0.3.3:
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/jq-web/-/jq-web-0.3.3.tgz#f928c9ea2db4264a0008e65163b10ad78ab23275"
 
 jquery@~3.3.1:
   version "3.3.1"
