@@ -66,7 +66,7 @@ function checkFilter() {
   filter = $('#filter')
     .val()
     .toString();
-  if(filter != '.') {
+  if(filter != '.' && filter != '') {
     port.postMessage({ json: input, filter: filter });
     filter = encodeURIComponent(filter);
     window.location.hash = 'broq-filter=' + filter;
