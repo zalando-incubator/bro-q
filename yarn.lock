@@ -110,9 +110,9 @@
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.7.0.tgz#9a06f4f137ee84d7df0460c1fdb1135ffa6c50fd"
 
-"@types/ace@0.0.37":
-  version "0.0.37"
-  resolved "https://registry.yarnpkg.com/@types/ace/-/ace-0.0.37.tgz#499adc7fdc115d007e04d3f8966e5580a7c8c9e8"
+"@types/ace@0.0.39":
+  version "0.0.39"
+  resolved "https://registry.yarnpkg.com/@types/ace/-/ace-0.0.39.tgz#ccb2f6654e5118e7e2bd5302be3b54dcdcb54f51"
 
 "@types/chrome@~0.0.65":
   version "0.0.65"
