@@ -29,7 +29,7 @@
     "@types/node": "^10.3.4",
     "@types/ace": "0.0.39",
     "@types/chrome": "~0.0.69",
-    "@types/jquery": "~3.3.2",
+    "@types/jquery": "~3.3.3",
     "css-loader": "^0.28.11",
     "style-loader": "^0.21.0",
     "ts-loader": "~4.4.1",
