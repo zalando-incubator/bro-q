@@ -130,9 +130,9 @@
   version "3.3.4"
   resolved "https://registry.yarnpkg.com/@types/jquery/-/jquery-3.3.4.tgz#f1850fb9a70041a14ace4f81a7ed782db8548317"
 
-"@types/node@^10.3.6":
-  version "10.3.6"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.3.6.tgz#ea8aab9439b59f40d19ec5f13b44642344872b11"
+"@types/node@^10.5.0":
+  version "10.5.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.5.0.tgz#f5b61395c09b47ac46aaa1452750c9a72b3d3673"
 
 "@webassemblyjs/ast@1.5.12":
   version "1.5.12"
