@@ -2,6 +2,11 @@
 
 ![icon](src/pages/assets/icon128.png)
 
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/stars/nimelepbpejjlbmoobocpfnjhihnpked.svg?style=for-the-badge)](https://goo.gl/c8SAF4)
+
+
+## Chrome Web Store: https://goo.gl/c8SAF4
+
 Chrome Extension for JSON formatting and [jq](https://stedolan.github.io/jq/) filtering in your Browser.
 
 If you want to contribute, please, read our [Contributing](CONTRIBUTING.md) guidelines first.
@@ -24,6 +29,11 @@ If you want to contribute, please, read our [Contributing](CONTRIBUTING.md) guid
 - copy your json file or the filter output to the clipboard
 
 ## How to install
+
+
+Chrome Web Store: https://goo.gl/c8SAF4
+
+or follow this steps:
 
 1. Download the latest [release-XXX](https://github.com/zalando-incubator/bro-q/releases/latest/) version and extract the code.
 2. Enable `Developer mode` in `Chrome Settings > Extensions`
