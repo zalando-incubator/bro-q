@@ -14,7 +14,7 @@ If you want to contribute, please, read our [Contributing](CONTRIBUTING.md) guid
 
 - deep link using fragments in order to share your [jq](https://stedolan.github.io/jq/) expression
 - no need to post your json to any external services for formatting
-- open your json file in Chrome (no API needed, local json files are woking too)
+- open your json file in Chrome (no API needed, local json files are working too)
 - search & filtering functionality
 - highlighting
 - filtering with [jq](https://stedolan.github.io/jq/), no installation needed
