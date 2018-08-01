@@ -76,8 +76,5 @@ module.exports = {
                 to: path.resolve('dist/css')
             }
         ])
-
-        // minify
-        // new webpack.optimize.UglifyJsPlugin()
     ]
 };
