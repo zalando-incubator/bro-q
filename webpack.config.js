@@ -5,10 +5,9 @@ const CopyPlugin = require('copy-webpack-plugin');
 module.exports = {
     entry: {
         background: path.join(__dirname, 'src/ts/background.js'),
-        index: path.join(__dirname, 'src/ts/index.ts'),
+        index: path.join(__dirname, 'src/ts/index.tsx'),
         options: path.join(__dirname, 'src/ts/options.ts'),
-        ui: path.join(__dirname, 'src/ts/ui.ts'),
-        vendor: ['moment', 'jquery', 'brace']
+        vendor: ['brace']
     },
     output: {
         path: path.join(__dirname, 'dist/js'),
@@ -49,7 +48,7 @@ module.exports = {
         ]
     },
     resolve: {
-        extensions: ['.ts', '.tsx', '.js']
+        extensions: ['.ts', '.tsx', '.js'],
     },
     plugins: [
         // exclude locale files in moment
