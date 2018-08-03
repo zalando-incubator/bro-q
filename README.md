@@ -23,6 +23,7 @@ If you want to contribute, please, read our [Contributing](CONTRIBUTING.md) guid
 - search & filtering functionality
 - highlighting
 - filtering with [jq](https://stedolan.github.io/jq/), no installation needed
+- saving commonly used filters for easy access later
 - editor customization
 - full coverage of [jq](https://stedolan.github.io/jq/) functionality
 - create a shell command with your filter and curl

@@ -1,5 +1,6 @@
 let ace;
 import {Clipboard} from 'ts-clipboard';
+import {addFilter, removeFilter, getFilters} from './storage'
 import * as $ from 'jquery';
 
 export function loadEditorDep() {
@@ -99,16 +100,89 @@ export function renderOutputEditor(output) {
     });
 }
 
+function createButtonWithAction(clickEvent:()=>void, options:object = {}) {
+    const buttonElement = document.createElement('button');
+    if(options['id']) {
+        buttonElement.id = options['id'];
+    }
+    if(options['className']) {
+        buttonElement.className = options['className'];
+    }
+    if(options['text']) {
+        buttonElement.innerText = options['text'];
+    }
+    buttonElement.onclick = clickEvent;
+    return buttonElement;
+}
+
 export function copyButton(div) {
-    let copyButton = document.createElement('button');
-    copyButton.id = 'copy-' + div;
-    copyButton.innerHTML = 'Copy';
-    copyButton.onclick = function () {
+    return createButtonWithAction(()=> {
         const editor = ace.edit(div);
         Clipboard.copy(editor.getValue());
-    };
-    return copyButton;
+    }, {
+        id: 'copy-' + div,
+        text: 'Copy',
+    });
 }
+
+function openModal(content) {
+    $('body').append('<div class="modal"></div>');
+    $('.modal').append(content);
+    $('.modal').on('click', (event) => {
+        if($(event.target).is('.modal, .modal-inner')) {
+            $('.modal').remove();
+        }
+    })
+}
+
+function openSavedFilters(filters: string[]) {
+    if(filters.length === 0) {
+        return alert('You don\'t have any saved filters yet.');
+    }
+    const html = `
+    <div class='modal-inner'>
+        <div class='modal-content'>
+            ${filters.map(filter => 
+                `<div class='saved-filter-wrapper'>
+                    <pre class='saved-filter'>${filter}</pre>
+                    <a href='#' class='remove-filter' alt='delete'>X</a>
+                </div>`
+            ).join('')}
+        </div>
+    </div>`
+    openModal(html);
+    $('.saved-filter').on('click', function (){
+        const filter = $(this).text();
+        $('#filter').val(filter).change();
+        $('.modal').remove();
+    });
+    $('.remove-filter').on('click', function(){
+        const filter = $(this).siblings('.saved-filter').text();
+        removeFilter(filter, () => {
+            $('.modal').remove();
+            getFilters(openSavedFilters);
+        });
+    })
+}
+
+function saveAndLoadButtons() {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'button-group'
+    const saveButton = createButtonWithAction(()=>{
+        const value = $('#filter').val() as string;
+        addFilter(value);
+    }, {
+        text: 'Save Filter'
+    });
+    const loadButton = createButtonWithAction(()=>{
+        getFilters(openSavedFilters);
+    }, {
+        text: 'Load Filter'
+    });
+    wrapper.appendChild(saveButton);
+    wrapper.appendChild(loadButton);
+    return wrapper;
+};
 
 export function renderUi() {
     if ($('#broqContent').length === 0) {
@@ -117,11 +191,11 @@ export function renderUi() {
 
         let upperDiv = document.createElement('div');
         upperDiv.id = 'upperDiv';
-        upperDiv.className = 'row';
+        upperDiv.className = 'flex-row';
 
         let leftSideDiv = document.createElement('div');
         leftSideDiv.id = 'leftSideDiv';
-        leftSideDiv.className = 'one-half column';
+        leftSideDiv.className = 'flex-column';
 
         let filterDiv = document.createElement('div');
         filterDiv.id = 'filterDiv';
@@ -152,11 +226,7 @@ export function renderUi() {
         questionmark.id = 'questionmark';
         questionmark.src = questionmarkURL;
 
-        let curlButton = document.createElement('button');
-        curlButton.id = 'curlButton';
-        curlButton.innerHTML = 'copy for shell';
-        curlButton.onclick = function () {
-            //declare vars
+        const copyAsCurl = () => {
             const url = window.location.href.split('#')[0];
             const filter = $('#filter')
                 .val()
@@ -167,11 +237,15 @@ export function renderUi() {
 
             //copy to Clipboard
             Clipboard.copy(curl_string);
-        };
+        }
+
+        let curlButton = createButtonWithAction(copyAsCurl, {
+            id: 'curlButton',
+            text: 'copy for shell'
+        });
 
         let logoDiv = document.createElement('div');
         logoDiv.id = 'logoDiv';
-        logoDiv.className = 'one-half column';
 
         const logoURL = chrome.extension.getURL('/pages/assets/icon128.png');
         let logo = document.createElement('img');
@@ -183,6 +257,7 @@ export function renderUi() {
         filterTitleDiv.appendChild(filterLabel);
         filterTitleDiv.appendChild(linkToInfo);
         filterTitleDiv.appendChild(curlButton);
+        filterTitleDiv.appendChild(saveAndLoadButtons());
 
         filterDiv.appendChild(filterTitleDiv);
         filterDiv.appendChild(filter);
