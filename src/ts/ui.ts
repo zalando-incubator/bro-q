@@ -194,7 +194,7 @@ function saveAndLoadButtons() {
     ]);
 };
 
-export function renderUi() {
+export function renderUi(options) {
     if ($('#broqContent').length === 0) {
         let broqContent = document.createElement('div');
         broqContent.id = 'broqContent';
@@ -301,7 +301,7 @@ export function renderUi() {
 
         let inputDiv = document.createElement('div');
         inputDiv.id = 'inputDiv';
-        inputDiv.className = 'one-half column';
+        inputDiv.className = 'one-half column' + (options.hideUnfilteredJsonByDefault ? ' hidden' : '');
 
         let aceInputEditorDiv = document.createElement('div');
         aceInputEditorDiv.id = 'json-editor-input';
@@ -311,7 +311,9 @@ export function renderUi() {
 
         let outputDiv = document.createElement('div');
         outputDiv.id = 'outputDiv';
-        outputDiv.className = 'one-half column';
+        if (!options.hideUnfilteredJsonByDefault) {
+            outputDiv.className = 'one-half column';
+        }
 
         let aceOutputEditorDiv = document.createElement('div');
         aceOutputEditorDiv.id = 'json-editor-output';
@@ -320,7 +322,21 @@ export function renderUi() {
         outputToolbar.id = 'outputToolbar';
 
         inputToolbar.appendChild(copyButton('json-editor-input'));
-        outputToolbar.appendChild(copyButton('json-editor-output'));
+
+        const getUnfilteredJsonViewButtonText = isHidden => `${isHidden ? 'Show' : 'Hide'} Unfiltered JSON`
+        outputToolbar.appendChild(createButtonGroup([
+            copyButton('json-editor-output'),
+            createButtonWithAction(() => {
+                $('#inputDiv').toggleClass('hidden');
+                $('#outputDiv').toggleClass('one-half column')
+                $('#outputDiv-fullscreen-button').text(
+                    getUnfilteredJsonViewButtonText($('#inputDiv').hasClass('hidden'))
+                );
+            }, {
+                id: 'outputDiv-fullscreen-button',
+                text: getUnfilteredJsonViewButtonText(options.hideUnfilteredJsonByDefault)
+            }),
+        ]));
 
         inputDiv.appendChild(aceInputEditorDiv);
         inputDiv.appendChild(inputToolbar);

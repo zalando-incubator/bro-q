@@ -60,7 +60,8 @@ const defaultEditorOptions = {
 };
 
 const defaultCustomOptions = {
-    liveUrlQuery: true
+    liveUrlQuery: true,
+    hideUnfilteredJsonByDefault: false,
 };
 
 export const defaultOptions = Object.assign({}, defaultEditorOptions, defaultCustomOptions);
