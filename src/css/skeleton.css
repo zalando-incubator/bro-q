@@ -619,16 +619,17 @@ button:active {
 #filterTitleDiv {
   display: inline-block;
   width: 100%;
+  margin-bottom: 6px;
 }
 
-#curlButton {
-  position: relative;
-  margin: 0 16 6;
+#filterTitleDiv .button-group {
+  margin: 0 16px;
 }
 
 #linkToInfo {
   position: relative;
-  margin: 0 7px;
+  margin-left: 10px;
+  margin-right: 20px;
 }
 
 #questionmark {

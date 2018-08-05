@@ -1,12 +1,13 @@
 import checkIfJson from './util/check-if-json';
 import * as ui from './ui';
 import * as $ from 'jquery';
-import {checkStorageOptions} from './options';
+import {defaultOptions, parseOptions, checkStorageOptions} from './options';
 
 let input = '';
 let output = '';
 let filter = '.';
 let port = null;
+let options = defaultOptions;
 
 function onLoad() {
     checkIfJson(function (pre) {
@@ -14,19 +15,21 @@ function onLoad() {
 
         checkStorageOptions();
         loadExtension(pre);
+
+        chrome.storage.onChanged.addListener(function (changes) {
+            for (let key in changes) {
+                if (key == 'options') {
+                    loadExtension(pre);
+                }
+            }
+        });
     });
 }
 
 function loadExtension(pre) {
-    chrome.storage.onChanged.addListener(function (changes) {
-        for (let key in changes) {
-            if (key == 'options') {
-                loadExtension(pre);
-            }
-        }
-    });
     chrome.storage.sync.get(['options'], function (result) {
         if (result.options != undefined) {
+            options = parseOptions(result.options);
             ui.loadEditorDep();
             ui.renderCss();
 
@@ -56,9 +59,15 @@ function loadExtension(pre) {
                 }
             });
             checkFilter();
-            $('#filter').on('change paste keyup', checkFilter);
+            // Clear event listeners before re-adding to avoid adding
+            // multiple listeners when extension reloads itself.
+            $('#filter').off().on('change paste keyup', checkFilter);
         }
     });
+}
+
+function pushHistoryStateWithoutBroQ() {
+    history.pushState("", document.title, window.location.pathname + window.location.search);
 }
 
 // get the filter input
@@ -70,10 +79,16 @@ function checkFilter() {
     port.postMessage({json: input, filter: filter});
     filter = encodeURIComponent(filter);
 
-    if (filter != '.' && filter != '') {
-        window.location.hash = 'broq-filter=' + filter;
-    } else if (window.location.hash.includes('#broq-filter=')) {
-        history.pushState("", document.title, window.location.pathname + window.location.search);
+    if (options.liveUrlQuery) {
+        if (filter != '.' && filter != '') {
+            window.location.hash = 'broq-filter=' + filter;
+        } else if (window.location.hash.includes('#broq-filter=')) {
+            pushHistoryStateWithoutBroQ();
+        }
+    } else {
+        if (window.location.hash && window.location.hash !== `#broq-filter=${filter}`) {
+            pushHistoryStateWithoutBroQ();
+        }
     }
 }
 
