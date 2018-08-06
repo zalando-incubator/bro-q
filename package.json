@@ -27,7 +27,7 @@
     "wasm-dce": "^1.0.2"
   },
   "devDependencies": {
-    "@types/node": "^10.5.5",
+    "@types/node": "^10.5.6",
     "@types/ace": "0.0.40",
     "@types/chrome": "~0.0.71",
     "@types/jquery": "~3.3.5",
@@ -35,7 +35,7 @@
     "style-loader": "^0.21.0",
     "ts-loader": "~4.4.2",
     "typescript": "~3.0.1",
-    "webpack": "~4.16.4",
+    "webpack": "~4.16.5",
     "webpack-cli": "^3.1.0"
   }
 }
