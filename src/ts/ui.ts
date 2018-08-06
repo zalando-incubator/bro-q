@@ -1,6 +1,7 @@
 let ace;
 import {Clipboard} from 'ts-clipboard';
 import {addFilter, removeFilter, getFilters} from './storage'
+import {parseEditorOptions} from './options'
 import * as $ from 'jquery';
 
 export function loadEditorDep() {
@@ -72,7 +73,7 @@ export function renderInputEditor(input) {
         if (result.options != undefined) {
             const prettify = JSON.stringify(JSON.parse(input), null, 2);
             const editor = ace.edit('json-editor-input');
-            let options = JSON.parse(result.options);
+            const options = parseEditorOptions(result.options);
             editor.getSession().setMode('ace/mode/json');
             editor.$blockScrolling = Infinity;
             editor.setOptions(options);
@@ -88,7 +89,7 @@ export function renderOutputEditor(output) {
     chrome.storage.sync.get(['options'], function (result) {
         if (result.options != undefined) {
             const editor = ace.edit('json-editor-output');
-            let options = JSON.parse(result.options);
+            const options = parseEditorOptions(result.options);
             editor.getSession().setMode('ace/mode/json');
             editor.$blockScrolling = Infinity;
             editor.setOptions(options);
@@ -98,6 +99,18 @@ export function renderOutputEditor(output) {
             editor.clearSelection();
         }
     });
+}
+
+function createButtonGroup(buttons: HTMLElement[]) {
+    const buttonGroup = document.createElement('div');
+    buttonGroup.className = 'button-group'
+
+    buttons.forEach(button => {
+        buttonGroup.appendChild(button)
+    })
+
+
+    return buttonGroup
 }
 
 function createButtonWithAction(clickEvent:()=>void, options:object = {}) {
@@ -142,7 +155,7 @@ function openSavedFilters(filters: string[]) {
     const html = `
     <div class='modal-inner'>
         <div class='modal-content'>
-            ${filters.map(filter => 
+            ${filters.map(filter =>
                 `<div class='saved-filter-wrapper'>
                     <pre class='saved-filter'>${filter}</pre>
                     <a href='#' class='remove-filter' alt='delete'>X</a>
@@ -166,22 +179,19 @@ function openSavedFilters(filters: string[]) {
 }
 
 function saveAndLoadButtons() {
-    const wrapper = document.createElement('div');
-    wrapper.className = 'button-group'
-    const saveButton = createButtonWithAction(()=>{
-        const value = $('#filter').val() as string;
-        addFilter(value);
-    }, {
-        text: 'Save Filter'
-    });
-    const loadButton = createButtonWithAction(()=>{
-        getFilters(openSavedFilters);
-    }, {
-        text: 'Load Filter'
-    });
-    wrapper.appendChild(saveButton);
-    wrapper.appendChild(loadButton);
-    return wrapper;
+    return createButtonGroup([
+        createButtonWithAction(() => {
+            const value = $('#filter').val() as string;
+            addFilter(value);
+        }, {
+            text: 'Save Filter'
+        }),
+        createButtonWithAction(() => {
+            getFilters(openSavedFilters);
+        }, {
+            text: 'Load Filter'
+        })
+    ]);
 };
 
 export function renderUi() {
@@ -239,10 +249,26 @@ export function renderUi() {
             Clipboard.copy(curl_string);
         }
 
-        let curlButton = createButtonWithAction(copyAsCurl, {
-            id: 'curlButton',
-            text: 'copy for shell'
-        });
+        function copySharableUrl () {
+            const url = window.location.href.split('#')[0]
+            const filter = $('#filter')
+                .val()
+                .toString();
+            const encodedFilter = encodeURIComponent(filter)
+
+            Clipboard.copy(`${url}#broq-filter=${encodedFilter}`);
+        }
+
+        const copyActions = createButtonGroup([
+            createButtonWithAction(copyAsCurl, {
+                id: 'curlButton',
+                text: 'copy for shell'
+            }),
+            createButtonWithAction(copySharableUrl, {
+                id: 'copySharableButton',
+                text: 'copy sharable url'
+            }),
+        ])
 
         let logoDiv = document.createElement('div');
         logoDiv.id = 'logoDiv';
@@ -256,7 +282,7 @@ export function renderUi() {
 
         filterTitleDiv.appendChild(filterLabel);
         filterTitleDiv.appendChild(linkToInfo);
-        filterTitleDiv.appendChild(curlButton);
+        filterTitleDiv.appendChild(copyActions);
         filterTitleDiv.appendChild(saveAndLoadButtons());
 
         filterDiv.appendChild(filterTitleDiv);

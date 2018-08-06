@@ -44,7 +44,7 @@ const themes = {
     Xcode: aceThemePath + 'xcode'
 };
 
-const defaultOptions = {
+const defaultEditorOptions = {
     highlightActiveLine: true,
     highlightSelectedWord: true,
     readOnly: true,
@@ -59,6 +59,12 @@ const defaultOptions = {
     dragEnabled: true
 };
 
+const defaultCustomOptions = {
+    liveUrlQuery: true
+};
+
+export const defaultOptions = Object.assign({}, defaultEditorOptions, defaultCustomOptions);
+
 export function checkStorageOptions() {
     chrome.storage.sync.get(['options'], function (result) {
         if (result.options === undefined) {
@@ -72,6 +78,17 @@ $(function () {
     getOptions();
 });
 
+export function parseOptions (options: string) {
+    return Object.assign({}, defaultOptions, JSON.parse(options))
+}
+
+export function parseEditorOptions (options: string) {
+    const parsedOptions = JSON.parse(options);
+    return Object.keys(defaultEditorOptions).reduce((accum, key) => (
+        Object.assign(accum, { [key]: parsedOptions[key] })
+    ), { ...defaultEditorOptions });
+}
+
 function getOptions() {
     chrome.storage.onChanged.addListener(function (changes) {
         for (let key in changes) {
@@ -82,7 +99,7 @@ function getOptions() {
     });
     chrome.storage.sync.get(['options'], function (result) {
         if (result.options != undefined) {
-            let options = JSON.parse(result.options);
+            const options = parseOptions(result.options);
             $('#theme').val(
                 Object.keys(themes).find(key => themes[key] === options.theme)
             );
@@ -111,7 +128,7 @@ function saveOptions() {
         if (currentOptions === null) {
             currentOptions = defaultOptions;
         } else {
-            currentOptions = JSON.parse(currentOptions);
+            currentOptions = parseOptions(currentOptions);
         }
         let options = JSON.parse(JSON.stringify(currentOptions));
 
