@@ -740,3 +740,6 @@ button:active {
   margin: 1rem 0 2.5rem 1.5rem;
 }
 
+.hidden {
+  display: none;
+}

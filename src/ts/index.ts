@@ -36,7 +36,7 @@ function loadExtension(pre) {
             // Get JSON from html
             input = pre.textContent;
 
-            ui.renderUi();
+            ui.renderUi(options);
             ui.renderInputEditor(input);
             ui.renderOutputEditor(output);
 
