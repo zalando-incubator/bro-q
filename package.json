@@ -32,7 +32,7 @@
     "@types/chrome": "~0.0.71",
     "@types/jquery": "~3.3.5",
     "css-loader": "^1.0.0",
-    "style-loader": "^0.21.0",
+    "style-loader": "^0.22.0",
     "ts-loader": "~4.4.2",
     "typescript": "~3.0.1",
     "webpack": "~4.16.5",
