@@ -29,7 +29,7 @@
   "devDependencies": {
     "@types/node": "^10.7.1",
     "@types/ace": "0.0.40",
-    "@types/chrome": "~0.0.71",
+    "@types/chrome": "~0.0.72",
     "@types/jquery": "~3.3.6",
     "css-loader": "^1.0.0",
     "style-loader": "^0.22.1",
