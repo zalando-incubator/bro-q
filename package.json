@@ -33,7 +33,7 @@
     "@types/jquery": "~3.3.6",
     "css-loader": "^1.0.0",
     "style-loader": "^0.23.0",
-    "ts-loader": "~5.0.0",
+    "ts-loader": "~5.1.0",
     "typescript": "~3.0.1",
     "webpack": "~4.17.2",
     "webpack-cli": "^3.1.0"
