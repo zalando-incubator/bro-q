@@ -30,7 +30,7 @@
     "@types/node": "^10.9.4",
     "@types/ace": "0.0.40",
     "@types/chrome": "~0.0.73",
-    "@types/jquery": "~3.3.6",
+    "@types/jquery": "~3.3.8",
     "css-loader": "^1.0.0",
     "style-loader": "^0.23.0",
     "ts-loader": "~5.1.1",
