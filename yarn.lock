@@ -126,9 +126,9 @@
   version "0.0.28"
   resolved "https://registry.yarnpkg.com/@types/filewriter/-/filewriter-0.0.28.tgz#c054e8af4d9dd75db4e63abc76f885168714d4b3"
 
-"@types/jquery@~3.3.9":
-  version "3.3.9"
-  resolved "https://registry.yarnpkg.com/@types/jquery/-/jquery-3.3.9.tgz#91f2aaf5c1e91fd79598fc00ecb4504d78b51fd7"
+"@types/jquery@~3.3.10":
+  version "3.3.10"
+  resolved "https://registry.yarnpkg.com/@types/jquery/-/jquery-3.3.10.tgz#d0afaec7ee55f591992e74c607df5dc7cd9c76ab"
 
 "@types/node@^10.10.3":
   version "10.10.3"
