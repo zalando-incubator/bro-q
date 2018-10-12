@@ -126,9 +126,9 @@
   version "0.0.28"
   resolved "https://registry.yarnpkg.com/@types/filewriter/-/filewriter-0.0.28.tgz#c054e8af4d9dd75db4e63abc76f885168714d4b3"
 
-"@types/jquery@~3.3.14":
-  version "3.3.14"
-  resolved "https://registry.yarnpkg.com/@types/jquery/-/jquery-3.3.14.tgz#7c78e18f8c4bf9a8eae1de62815493ab1d7cc04f"
+"@types/jquery@~3.3.16":
+  version "3.3.16"
+  resolved "https://registry.yarnpkg.com/@types/jquery/-/jquery-3.3.16.tgz#59c7480f85124006d6a1c72a26736aa7280d7570"
   dependencies:
     "@types/sizzle" "*"
 
