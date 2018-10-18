@@ -32,7 +32,7 @@ function isJSONP(jsonStr) {
 }
 
 function checkIfJson(sucessCallback, element) {
-  var pre = element || getPreWithSource();
+  var pre = getPreWithSource();
 
   if (pre !== null &&
     pre !== undefined &&
