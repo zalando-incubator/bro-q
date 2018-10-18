@@ -1,7 +1,8 @@
 import { h, Component } from 'preact';
+
 export interface FilterBarProps {
   filter: string;
-  updateFilter: (newFilter:string) => void;
+  updateFilter: (newFilter: string) => void;
 }
 
 interface FilterBarState {
@@ -13,51 +14,51 @@ const WAIT_INTERVAL = 1000;
 const ENTER_KEY = 13;
 
 export default class FilterBar extends Component<FilterBarProps, FilterBarState> {
-  timer:number;
+  timer: number;
   constructor(props) {
     super(props);
 
     this.state = {
-        value: props.filter,
-        lastValue: ''
+      value: props.filter,
+      lastValue: ''
     };
   }
 
   componentWillMount() {
-      this.timer = null;
+    this.timer = null;
   }
 
-  componentWillReceiveProps(newProps:FilterBarProps) {
+  componentWillReceiveProps(newProps: FilterBarProps) {
     this.setState({
       value: newProps.filter
     });
   }
 
-  handleChange = (event:Event) => {
-      window.clearTimeout(this.timer);
+  handleChange = (event: Event) => {
+    window.clearTimeout(this.timer);
 
-      this.setState({
-        value: (event.target as HTMLInputElement).value
-      });
+    this.setState({
+      value: (event.target as HTMLInputElement).value
+    });
 
-      this.timer = window.setTimeout(this.triggerChange, WAIT_INTERVAL);
+    this.timer = window.setTimeout(this.triggerChange, WAIT_INTERVAL);
   }
 
   handleKeyDown = (e) => {
-      this.handleChange(e);
-      if (e.keyCode === ENTER_KEY) {
-          this.triggerChange();
-      }
+    this.handleChange(e);
+    if (e.keyCode === ENTER_KEY) {
+      this.triggerChange();
+    }
   }
 
   triggerChange = () => {
-      const { value, lastValue } = this.state;
-      if(value !== lastValue) {
-        this.props.updateFilter(value);
-        this.setState({
-          lastValue: value
-        });
-      }
+    const { value, lastValue } = this.state;
+    if (value !== lastValue) {
+      this.props.updateFilter(value);
+      this.setState({
+        lastValue: value
+      });
+    }
   }
 
   render() {

@@ -20,14 +20,14 @@ export default class App extends Component<AppProps, AppState> {
     this.state = {
       filter: props.initialFilter,
       outputJson: props.inputJson,
-      inputJson:props.inputJson,
+      inputJson: props.inputJson,
     };
   }
 
   port: chrome.runtime.Port;
 
   componentDidMount() {
-    this.port = chrome.runtime.connect({name: 'jq-backend-connection'});
+    this.port = chrome.runtime.connect({ name: 'jq-backend-connection' });
     this.port.onMessage.addListener(msg => {
       this.setState({
         outputJson: msg.jqResult
@@ -35,7 +35,7 @@ export default class App extends Component<AppProps, AppState> {
     });
     this.runJqFilter();
   }
-  
+
   componentWillUnmount() {
     this.port.disconnect();
   }
@@ -54,29 +54,28 @@ export default class App extends Component<AppProps, AppState> {
 
   runJqFilter = () => {
     const { inputJson, filter } = this.state;
-    this.port.postMessage({json: inputJson, filter: filter});
+    this.port.postMessage({ json: inputJson, filter: filter });
   }
 
   render() {
     const { inputJson, outputJson, filter } = this.state;
     const { documentUrl } = this.props;
     return <div>
-        <link
-          href={chrome.extension.getURL('/css/skeleton.css')}
-          type="text/css"
-          rel="stylesheet"
-          />
-        <div id="upperDiv" class="flex-row">
-          <div id="leftSideDiv" class="flex-column">
-            <FilterHeaderBar filter={filter} documentUrl={documentUrl} updateFilter={this.updateFilter} />
-            <FilterBar filter={filter} updateFilter={this.updateFilter} />
-          </div>
+      <link
+        href={chrome.extension.getURL('/css/skeleton.css')}
+        type="text/css"
+        rel="stylesheet"
+      />
+      <div id="upperDiv" class="flex-row">
+        <div id="leftSideDiv" class="flex-column">
+          <FilterHeaderBar filter={filter} documentUrl={documentUrl} updateFilter={this.updateFilter} />
+          <FilterBar filter={filter} updateFilter={this.updateFilter} />
         </div>
-        <InputOutput
-          inputJson={inputJson}
-          outputJson={outputJson}
-          updateInput={(newInput)=>this.setState({inputJson: newInput})}
-        />
+      </div>
+      <InputOutput
+        inputJson={inputJson}
+        outputJson={outputJson}
+      />
     </div>;
   }
 }

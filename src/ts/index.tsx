@@ -1,53 +1,53 @@
 import checkIfJson from './util/check-if-json';
-import {checkStorageOptions} from './options';
+import { checkStorageOptions } from './options';
 import App from './App';
 import { h, render } from "preact";
 
 function onLoad() {
-    checkIfJson(function (pre) {
-        pre.hidden = true;
+  checkIfJson((pre) => {
+    pre.hidden = true;
 
-        checkStorageOptions();
-        loadExtension(pre);
-    });
+    checkStorageOptions();
+    loadExtension(pre);
+  });
 }
 
 const loadInitialFilter = () => {
-    if (window.location.hash.includes('#broq-filter=')) {
-        return decodeURIComponent(window.location.hash).replace('#broq-filter=', '');
-    } else {
-        return '.';
-    }
+  if (window.location.hash.includes('#broq-filter=')) {
+    return decodeURIComponent(window.location.hash).replace('#broq-filter=', '');
+  } else {
+    return '.';
+  }
 }
 
 const getDocumentUrl = () => {
-    return window.location.href.split('#')[0]
+  return window.location.href.split('#')[0]
 }
 
 function loadExtension(pre) {
-    chrome.storage.onChanged.addListener(function (changes) {
-        for (let key in changes) {
-            if (key == 'options') {
-                loadExtension(pre);
-            }
-        }
-    });
-    chrome.storage.sync.get(['options'], function (result) {
-        if (result.options != undefined) {
-            const broqContent = document.createElement('div');
-            broqContent.id = 'broqContent';
-            document.body.appendChild(broqContent);
-            render(
-                <App
-                initialFilter={loadInitialFilter()}
-                documentUrl={getDocumentUrl()}
-                inputJson={pre.textContent}
-                options={result.options}
-                />,
-                broqContent
-            );
-        }
-    });
+  chrome.storage.onChanged.addListener((changes) => {
+    for (let key in changes) {
+      if (key == 'options') {
+        loadExtension(pre);
+      }
+    }
+  });
+  chrome.storage.sync.get(['options'], (result) => {
+    if (result.options != undefined) {
+      const broqContent = document.createElement('div');
+      broqContent.id = 'broqContent';
+      document.body.appendChild(broqContent);
+      render(
+        <App
+          initialFilter={loadInitialFilter()}
+          documentUrl={getDocumentUrl()}
+          inputJson={pre.textContent}
+          options={result.options}
+        />,
+        broqContent
+      );
+    }
+  });
 }
 
 document.addEventListener('DOMContentLoaded', onLoad, false);

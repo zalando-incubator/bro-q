@@ -18,20 +18,20 @@ export interface AceEditorProps {
   width?: string;
   fontSize?: number | string;
   showGutter?: boolean;
-  onChange?: (text:string, event:any)=>void;
-  onCopy?: (text)=>void;
-  onPaste?: (text:string)=>void;
-  onFocus?: (event:any)=>void;
-  onInput?: (event:any)=>void;
-  onBlur?: (event:any, editor:ace.Editor)=>void;
-  onScroll?: (editor:ace.Editor)=>void;
+  onChange?: (text: string, event: any) => void;
+  onCopy?: (text) => void;
+  onPaste?: (text: string) => void;
+  onFocus?: (event: any) => void;
+  onInput?: (event: any) => void;
+  onBlur?: (event: any, editor: ace.Editor) => void;
+  onScroll?: (editor: ace.Editor) => void;
   value?: string;
   defaultValue?: string;
-  onLoad?: (editor:ace.Editor)=>void;
-  onSelectionChange?: (selection:ace.Selection, event:any)=>void;
-  onCursorChange?: (selection:ace.Selection, event:any)=>void;
-  onBeforeLoad?: (editor:ace.Editor)=>void;
-  onValidate?: (any)=>void;
+  onLoad?: (editor: ace.Editor) => void;
+  onSelectionChange?: (selection: ace.Selection, event: any) => void;
+  onCursorChange?: (selection: ace.Selection, event: any) => void;
+  onBeforeLoad?: (editor: ace.Editor) => void;
+  onValidate?: (any) => void;
   minLines?: number;
   maxLines?: number;
   readOnly?: boolean;
@@ -57,7 +57,7 @@ interface AceEditorState {
 }
 
 export default class AceEditor extends Component<AceEditorProps, AceEditorState> {
-  defaultProps:AceEditorProps = {
+  defaultProps: AceEditorProps = {
     name: 'brace-editor',
     focus: false,
     mode: '',
@@ -80,15 +80,15 @@ export default class AceEditor extends Component<AceEditorProps, AceEditorState>
     cursorStart: 1,
     editorProps: {},
     style: {},
-    scrollMargin: [ 0, 0, 0, 0],
+    scrollMargin: [0, 0, 0, 0],
     setOptions: {},
     wrapEnabled: false,
     enableBasicAutocompletion: false,
     enableLiveAutocompletion: false,
   };
-  editor:ace.Editor;
-  refEditor:any;
-  silent:boolean = false;
+  editor: ace.Editor;
+  refEditor: any;
+  silent: boolean = false;
 
   constructor(props) {
     super(props);
@@ -109,7 +109,7 @@ export default class AceEditor extends Component<AceEditorProps, AceEditorState>
       showGutter,
       wrapEnabled,
       showPrintMargin,
-      scrollMargin = [ 0, 0, 0, 0],
+      scrollMargin = [0, 0, 0, 0],
       keyboardHandler,
       onLoad,
       annotations,
@@ -132,7 +132,7 @@ export default class AceEditor extends Component<AceEditorProps, AceEditorState>
     this.editor.renderer.setScrollMargin(scrollMargin[0], scrollMargin[1], scrollMargin[2], scrollMargin[3])
     this.editor.getSession().setMode(`ace/mode/${mode}`);
     // this.editor.setTheme(`ace/theme/github`);
-    this.editor.setFontSize(typeof fontSize === 'number' ? `{fontSize}px`: fontSize);
+    this.editor.setFontSize(typeof fontSize === 'number' ? `{fontSize}px` : fontSize);
     this.editor.getSession().setValue(!defaultValue ? value : defaultValue);
     this.editor.navigateFileEnd()
     this.editor.renderer.setShowGutter(showGutter);
@@ -154,7 +154,7 @@ export default class AceEditor extends Component<AceEditorProps, AceEditorState>
     }
     this.editor.session.on('changeScrollTop', this.onScroll);
     this.editor.getSession().setAnnotations(annotations || []);
-    if(markers && markers.length > 0){
+    if (markers && markers.length > 0) {
       this.handleMarkers(markers);
     }
 
@@ -267,7 +267,7 @@ export default class AceEditor extends Component<AceEditorProps, AceEditorState>
   }
 
   componentDidUpdate(prevProps) {
-    if(prevProps.height !== this.props.height || prevProps.width !== this.props.width){
+    if (prevProps.height !== this.props.height || prevProps.width !== this.props.width) {
       this.editor.resize();
     }
   }
@@ -295,7 +295,7 @@ export default class AceEditor extends Component<AceEditorProps, AceEditorState>
     }
   }
   onCursorChange = (event) => {
-    if(this.props.onCursorChange) {
+    if (this.props.onCursorChange) {
       const value = this.editor.getSelection();
       this.props.onCursorChange(value, event)
     }
@@ -313,7 +313,7 @@ export default class AceEditor extends Component<AceEditorProps, AceEditorState>
 
   onBlur = (event) => {
     if (this.props.onBlur) {
-      this.props.onBlur(event,this.editor);
+      this.props.onBlur(event, this.editor);
     }
   }
 
