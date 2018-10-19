@@ -31,7 +31,7 @@ function isJSONP(jsonStr) {
   return isJSON(extractJSON(jsonStr));
 }
 
-function checkIfJson(sucessCallback, element) {
+function checkIfJson(sucessCallback) {
   var pre = getPreWithSource();
 
   if (pre !== null &&
