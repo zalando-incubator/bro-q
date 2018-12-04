@@ -132,9 +132,9 @@
   dependencies:
     "@types/sizzle" "*"
 
-"@types/node@^10.12.2":
-  version "10.12.2"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.2.tgz#d77f9faa027cadad9c912cd47f4f8b07b0fb0864"
+"@types/node@^10.12.12":
+  version "10.12.12"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.12.tgz#e15a9d034d9210f00320ef718a50c4a799417c47"
 
 "@types/sizzle@*":
   version "2.3.2"
