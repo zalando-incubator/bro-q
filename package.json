@@ -31,7 +31,7 @@
     "@types/ace": "0.0.40",
     "@types/chrome": "~0.0.75",
     "@types/jquery": "~3.3.29",
-    "css-loader": "^1.0.1",
+    "css-loader": "^2.1.0",
     "style-loader": "^0.23.1",
     "ts-loader": "~5.3.3",
     "typescript": "~3.2.4",
