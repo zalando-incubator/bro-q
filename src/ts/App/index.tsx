@@ -2,16 +2,19 @@ import { h, Component } from 'preact';
 import FilterHeaderBar from './filterHeaderBar'
 import FilterBar from './filterBar'
 import InputOutput from './inputOutput'
+
 export interface AppProps {
   initialFilter: string;
   documentUrl: string;
   inputJson: string;
-  options: object;
+  options: string;
 }
+
 interface AppState {
   filter: string;
   outputJson: string;
   inputJson: string;
+  options: string;
 }
 
 export default class App extends Component<AppProps, AppState> {
@@ -21,6 +24,7 @@ export default class App extends Component<AppProps, AppState> {
       filter: props.initialFilter,
       outputJson: props.inputJson,
       inputJson: props.inputJson,
+      options: props.options,
     };
   }
 
@@ -58,7 +62,7 @@ export default class App extends Component<AppProps, AppState> {
   }
 
   render() {
-    const { inputJson, outputJson, filter } = this.state;
+    const { inputJson, outputJson, filter, options } = this.state;
     const { documentUrl } = this.props;
     return <div>
       <link
@@ -75,6 +79,7 @@ export default class App extends Component<AppProps, AppState> {
       <InputOutput
         inputJson={inputJson}
         outputJson={outputJson}
+        options={options}
       />
     </div>;
   }
