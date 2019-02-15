@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "@types/ace": "0.0.42",
-    "@types/chrome": "~0.0.79",
+    "@types/chrome": "~0.0.80",
     "@types/jquery": "~3.3.29",
     "@types/lodash": "^4.14.121",
     "@types/node": "^11.9.4",
