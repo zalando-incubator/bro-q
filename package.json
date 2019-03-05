@@ -27,7 +27,7 @@
     "@types/ace": "0.0.42",
     "@types/chrome": "~0.0.81",
     "@types/jquery": "~3.3.29",
-    "@types/lodash": "^4.14.121",
+    "@types/lodash": "^4.14.122",
     "@types/node": "^11.9.6",
     "babel-core": "^6.26.3",
     "babel-loader": "^8.0.5",
