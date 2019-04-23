@@ -1,6 +1,7 @@
 import { h, Component } from 'preact';
 import FilterHeaderBar from './filterHeaderBar'
 import FilterBar from './filterBar'
+import Errors from './errors'
 import InputOutput from './inputOutput'
 
 export interface AppProps {
@@ -8,12 +9,14 @@ export interface AppProps {
   documentUrl: string;
   inputJson: string;
   options: string;
+  errors: string;
 }
 
 interface AppState {
   filter: string;
   outputJson: string;
   inputJson: string;
+  errors: string;
   options: string;
 }
 
@@ -23,6 +26,7 @@ export default class App extends Component<AppProps, AppState> {
     this.state = {
       filter: props.initialFilter,
       outputJson: props.inputJson,
+      errors: props.errors,
       inputJson: props.inputJson,
       options: props.options,
     };
@@ -34,7 +38,8 @@ export default class App extends Component<AppProps, AppState> {
     this.port = chrome.runtime.connect({ name: 'jq-backend-connection' });
     this.port.onMessage.addListener(msg => {
       this.setState({
-        outputJson: msg.jqResult
+        outputJson: msg.jqResult,
+        errors: msg.error
       });
     });
     this.runJqFilter();
@@ -62,7 +67,7 @@ export default class App extends Component<AppProps, AppState> {
   }
 
   render() {
-    const { inputJson, outputJson, filter, options } = this.state;
+    const { inputJson, outputJson, errors, filter, options } = this.state;
     const { documentUrl } = this.props;
     return <div>
       <link
@@ -74,6 +79,7 @@ export default class App extends Component<AppProps, AppState> {
         <div id="leftSideDiv" class="flex-column">
           <FilterHeaderBar filter={filter} documentUrl={documentUrl} updateFilter={this.updateFilter} />
           <FilterBar filter={filter} updateFilter={this.updateFilter} />
+          <Errors errors={errors} />
         </div>
       </div>
       <InputOutput
