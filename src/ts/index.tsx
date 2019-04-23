@@ -43,6 +43,7 @@ function loadExtension(pre) {
           documentUrl={getDocumentUrl()}
           inputJson={pre.textContent}
           options={result.options}
+          errors=""
         />,
         broqContent
       );
