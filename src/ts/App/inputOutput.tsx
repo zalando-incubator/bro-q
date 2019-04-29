@@ -27,7 +27,7 @@ export default class InputOutput extends Component<InputOutputProps> {
             options={prettyOptions}
           />
           <div id="inputToolbar">
-            <button onClick={() => Clipboard.copy(inputJson)}>Copy</button>
+            <button id="copy-json-editor-input" onClick={() => Clipboard.copy(inputJson)}>Copy</button>
           </div>
         </div>
         <div id="outputDiv" class="one-half column">
@@ -37,7 +37,7 @@ export default class InputOutput extends Component<InputOutputProps> {
             options={prettyOptions}
           />
           <div id="outputToolbar">
-            <button onClick={() => Clipboard.copy(outputJson)}>Copy</button>
+            <button id="copy-json-editor-output" onClick={() => Clipboard.copy(outputJson)}>Copy</button>
           </div>
         </div>
       </div>

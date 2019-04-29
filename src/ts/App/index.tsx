@@ -88,6 +88,9 @@ export default class App extends Component<AppProps, AppState> {
           <Errors errors={errors} />
 
         </div>
+        <div id="logoDiv">
+            <img id="logo" src={chrome.extension.getURL('/pages/assets/icon128.png')} />
+        </div>
       </div>
       <InputOutput
         inputJson={inputJson}

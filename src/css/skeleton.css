@@ -706,8 +706,7 @@ button:active {
 }
 
 #logoDiv {
-    text-align: right;
-    margin-left: 4%;
+    width: 100px;
 }
 
 .flex-row {
