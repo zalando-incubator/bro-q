@@ -24,6 +24,13 @@ export default class FilterHeaderBar extends Component<FilterHeaderBarProps, Fil
     Clipboard.copy(curlString);
   }
 
+  copySharableURL = () => {
+    const { documentUrl, filter } = this.props;
+    const url = documentUrl.split('#')[0];
+    const encodedFilter = encodeURIComponent(filter)
+    Clipboard.copy(`${url}#broq-filter=${encodedFilter}`);
+  }
+
   saveFilter = () => {
     addFilter(this.props.filter);
   }
@@ -51,7 +58,10 @@ export default class FilterHeaderBar extends Component<FilterHeaderBarProps, Fil
         <a id="linkToInfo" href="https://stedolan.github.io/jq/manual/" target="_blank">
           <img id="questionmark" src={chrome.extension.getURL('/pages/assets/questionmark.png')} />
         </a>
-        <button label="copy for shell" onClick={this.copyShellCommand}>copy for shell</button>
+        <div class="button-group">
+          <button label="copy for shell" onClick={this.copyShellCommand}>copy for shell</button>
+          <button label="copy sharable url" onClick={this.copySharableURL}>copy sharable url</button>
+        </div>
         <div class="button-group">
           <button onClick={this.saveFilter}>Save Filter</button>
           <button onClick={this.openFilterPicker}>Load Filter</button>
