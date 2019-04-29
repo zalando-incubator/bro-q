@@ -155,10 +155,10 @@
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.123.tgz#39be5d211478c8dd3bdae98ee75bb7efe4abfe4d"
   integrity sha512-pQvPkc4Nltyx7G1Ww45OjVqUsJP4UsZm+GWJpigXgkikZqJgRm4c48g027o6tdgubWHwFRF15iFd+Y4Pmqv6+Q==
 
-"@types/node@^11.13.7":
-  version "11.13.7"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-11.13.7.tgz#85dbb71c510442d00c0631f99dae957ce44fd104"
-  integrity sha512-suFHr6hcA9mp8vFrZTgrmqW2ZU3mbWsryQtQlY/QvwTISCw7nw/j+bCQPPohqmskhmqa5wLNuMHTTsc+xf1MQg==
+"@types/node@^11.13.8":
+  version "11.13.8"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-11.13.8.tgz#e5d71173c95533be9842b2c798978f095f912aab"
+  integrity sha512-szA3x/3miL90ZJxUCzx9haNbK5/zmPieGraZEe4WI+3srN0eGLiT22NXeMHmyhNEopn+IrxqMc7wdVwvPl8meg==
 
 "@types/sizzle@*":
   version "2.3.2"
