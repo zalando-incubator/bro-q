@@ -1,8 +1,9 @@
 import { h, Component } from 'preact';
-import FilterHeaderBar from './filterHeaderBar'
-import FilterBar from './filterBar'
-import Errors from './errors'
-import InputOutput from './inputOutput'
+import FilterHeaderBar from './filterHeaderBar';
+import FilterBar from './filterBar';
+import Errors from './errors';
+import InputOutput from './inputOutput';
+import LoadingBar from './loadingBar';
 
 export interface AppProps {
   initialFilter: string;
@@ -18,6 +19,7 @@ interface AppState {
   inputJson: string;
   errors: string;
   options: string;
+  loading: boolean;
 }
 
 export default class App extends Component<AppProps, AppState> {
@@ -29,6 +31,7 @@ export default class App extends Component<AppProps, AppState> {
       errors: props.errors,
       inputJson: props.inputJson,
       options: props.options,
+      loading: false,
     };
   }
 
@@ -39,7 +42,8 @@ export default class App extends Component<AppProps, AppState> {
     this.port.onMessage.addListener(msg => {
       this.setState({
         outputJson: msg.jqResult,
-        errors: msg.error
+        errors: msg.error,
+        loading: false
       });
     });
     this.runJqFilter();
@@ -63,13 +67,15 @@ export default class App extends Component<AppProps, AppState> {
 
   runJqFilter = () => {
     const { inputJson, filter } = this.state;
+    this.setState({loading: true, errors: ""});
     this.port.postMessage({ json: inputJson, filter: filter });
   }
 
   render() {
-    const { inputJson, outputJson, errors, filter, options } = this.state;
+    const { inputJson, outputJson, errors, filter, options, loading } = this.state;
     const { documentUrl } = this.props;
     return <div>
+      {!!this.state.loading && <LoadingBar /> }
       <link
         href={chrome.extension.getURL('/css/skeleton.css')}
         type="text/css"
@@ -80,6 +86,7 @@ export default class App extends Component<AppProps, AppState> {
           <FilterHeaderBar filter={filter} documentUrl={documentUrl} updateFilter={this.updateFilter} />
           <FilterBar filter={filter} updateFilter={this.updateFilter} />
           <Errors errors={errors} />
+
         </div>
       </div>
       <InputOutput
