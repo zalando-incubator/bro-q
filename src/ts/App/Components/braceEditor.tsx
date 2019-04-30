@@ -65,6 +65,7 @@ export default class BraceEditor extends Component<BraceProps, BraceState> {
     editor.setValue(value);
     editor.clearSelection();
     editor.scrollToLine(0, false, true, null);
+    editor.resize(true);
   }
 
   componentDidMount() {
@@ -76,10 +77,10 @@ export default class BraceEditor extends Component<BraceProps, BraceState> {
     editor.getSession().setMode('ace/mode/json');
     editor.setTheme(options.theme || DEFAULT_THEME);
     editor.$blockScrolling = Infinity;
-
+    editor.resize(true);
+    editor.setShowPrintMargin(false);
     console.log(options);
     editor.setOptions({
-      maxLines: Infinity,
       ...options
     });
   }

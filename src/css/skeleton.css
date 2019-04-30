@@ -657,8 +657,6 @@ button:active {
 
 #errors {
     font-size: 16px;
-    width: 48%;
-    margin-left: 2%;
     margin-top: auto;
     height: 20px;
     display: inline-block;
@@ -667,7 +665,7 @@ button:active {
 
 #filter {
     font-size: 16px;
-    width: 50%;
+    width: 100%;
     margin-top: auto;
 }
 
@@ -707,6 +705,11 @@ button:active {
 
 #logoDiv {
     width: 100px;
+    display: block;
+    position: absolute;
+    top: -20px;
+    right: 10px;
+    height: 100px;
 }
 
 .flex-row {
@@ -735,12 +738,13 @@ button:active {
 #json-editor-input,
 #json-editor-output {
     position: relative;
-    height: 95%;
+    height: 93%;
 }
 
 #outputToolbar {
     height: 5%;
     text-align: right;
+    display: block;
 }
 
 .modal {
