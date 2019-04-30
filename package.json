@@ -1,6 +1,6 @@
 {
   "name": "bro-q",
-  "version": "1.0.0",
+  "version": "1.5.0",
   "description": "bro-q",
   "main": "index.js",
   "scripts": {
