@@ -18,7 +18,7 @@ interface AppState {
   outputJson: string;
   inputJson: string;
   errors: string;
-  options: string;
+  options: Object;
   loading: boolean;
 }
 
@@ -30,7 +30,7 @@ export default class App extends Component<AppProps, AppState> {
       outputJson: props.inputJson,
       errors: props.errors,
       inputJson: props.inputJson,
-      options: props.options,
+      options: JSON.parse(props.options),
       loading: false,
     };
   }
@@ -53,15 +53,25 @@ export default class App extends Component<AppProps, AppState> {
     this.port.disconnect();
   }
 
+  pushHistoryStateWithoutBroQ = () => {
+    history.pushState("", document.title, window.location.pathname + window.location.search);
+  }
+
   updateFilter = (newFilter: string) => {
     this.setState({
       filter: newFilter
     }, this.runJqFilter);
 
-    if (newFilter !== '.' && newFilter !== '') {
-      window.location.hash = `broq-filter=${encodeURIComponent(newFilter)}`;
+    if (this.state.options["liveUrlQuery"]) {
+      if (newFilter !== '.' && newFilter !== '') {
+          window.location.hash = 'broq-filter=' + newFilter;
+      } else if (window.location.hash.includes('#broq-filter=')) {
+          this.pushHistoryStateWithoutBroQ();
+      }
     } else {
-      history.pushState("", document.title, window.location.pathname + window.location.search);
+      if (window.location.hash && window.location.hash !== `#broq-filter=${newFilter}`) {
+          this.pushHistoryStateWithoutBroQ();
+      }
     }
   }
 
@@ -84,9 +94,10 @@ export default class App extends Component<AppProps, AppState> {
       <div id="upperDiv" class="flex-row">
         <div id="leftSideDiv" class="flex-column">
           <FilterHeaderBar filter={filter} documentUrl={documentUrl} updateFilter={this.updateFilter} />
-          <FilterBar filter={filter} updateFilter={this.updateFilter} />
-          <Errors errors={errors} />
-
+          <div class="row">
+            <FilterBar filter={filter} updateFilter={this.updateFilter} />
+            <Errors errors={errors} />
+          </div>
         </div>
         <div id="logoDiv">
             <img id="logo" src={chrome.extension.getURL('/pages/assets/icon128.png')} />

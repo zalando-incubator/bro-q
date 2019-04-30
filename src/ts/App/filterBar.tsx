@@ -65,13 +65,15 @@ export default class FilterBar extends Component<FilterBarProps, FilterBarState>
     const { value } = this.state;
 
     return (
-      <input
-        onKeyUp={this.handleKeyDown}
-        id="filter"
-        name="filter"
-        type="text"
-        value={value}
-      />
+      <div class="one-half column">
+        <input
+          onKeyUp={this.handleKeyDown}
+          id="filter"
+          name="filter"
+          type="text"
+          value={value}
+        />
+      </div>
     );
   }
 }

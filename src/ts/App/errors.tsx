@@ -13,6 +13,7 @@ export default class Errors extends Component<ErrorsProps> {
       <div
         id="errors"
         name="errors"
+        class="one-half column"
       >{errors}</div>
     );
   }
