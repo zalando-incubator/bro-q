@@ -13,10 +13,17 @@ interface FilterPickerState {
 export default class FilterPicker extends Component<FilterPickerProps, FilterPickerState> {
 
   deleteFilter = (filter: string) => {
-    removeFilter(filter, () => this.loadFilters())
+    var confirmDelete = confirm("Are you sure you want to delete the following filter?\n\t" + filter);
+    if(confirmDelete == true) {
+      removeFilter(filter, () => this.loadFilters())
+    }
   }
 
   componentDidMount() {
+    this.loadFilters();
+  }
+
+  componentDidUpdate() {
     this.loadFilters();
   }
 
@@ -39,7 +46,7 @@ export default class FilterPicker extends Component<FilterPickerProps, FilterPic
         {filters.map(filter => (
           <div class='saved-filter-wrapper'>
             <pre class='saved-filter' onClick={() => props.close(filter)}>{filter}</pre>
-            <a href='#' class='remove-filter' title='Delete' onClick={() => this.deleteFilter(filter)}>X</a>
+            <button label='Delete' onClick={() => this.deleteFilter(filter)}>X</button>
           </div>
         ))}
       </Modal>;

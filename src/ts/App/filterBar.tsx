@@ -3,14 +3,16 @@ import { h, Component } from 'preact';
 export interface FilterBarProps {
   filter: string;
   updateFilter: (newFilter: string) => void;
+  filterStatus: string;
 }
 
 interface FilterBarState {
   value: string;
   lastValue: string;
+  filterStatus: string;
 }
 
-const WAIT_INTERVAL = 1000;
+const WAIT_INTERVAL = 1500;
 const ENTER_KEY = 13;
 
 export default class FilterBar extends Component<FilterBarProps, FilterBarState> {
@@ -20,7 +22,8 @@ export default class FilterBar extends Component<FilterBarProps, FilterBarState>
 
     this.state = {
       value: props.filter,
-      lastValue: ''
+      lastValue: '',
+      filterStatus: "clear"
     };
   }
 
@@ -30,7 +33,8 @@ export default class FilterBar extends Component<FilterBarProps, FilterBarState>
 
   componentWillReceiveProps(newProps: FilterBarProps) {
     this.setState({
-      value: newProps.filter
+      value: newProps.filter,
+      filterStatus: newProps.filterStatus
     });
   }
 
@@ -47,6 +51,8 @@ export default class FilterBar extends Component<FilterBarProps, FilterBarState>
   handleKeyDown = (e) => {
     this.handleChange(e);
     if (e.keyCode === ENTER_KEY) {
+      // Prevent calling triggerChange twice because of race condition
+      window.clearTimeout(this.timer);
       this.triggerChange();
     }
   }
@@ -62,7 +68,7 @@ export default class FilterBar extends Component<FilterBarProps, FilterBarState>
   }
 
   render() {
-    const { value } = this.state;
+    const { value, filterStatus } = this.state;
 
     return (
       <div class="one-half column">
@@ -72,6 +78,7 @@ export default class FilterBar extends Component<FilterBarProps, FilterBarState>
           name="filter"
           type="text"
           value={value}
+          class={filterStatus}
         />
       </div>
     );
