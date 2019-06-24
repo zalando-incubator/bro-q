@@ -20,6 +20,7 @@ interface AppState {
   errors: string;
   options: Object;
   loading: boolean;
+  filterStatus: string;
 }
 
 export default class App extends Component<AppProps, AppState> {
@@ -32,6 +33,7 @@ export default class App extends Component<AppProps, AppState> {
       inputJson: props.inputJson,
       options: JSON.parse(props.options),
       loading: false,
+      filterStatus: "clear",
     };
   }
 
@@ -43,7 +45,8 @@ export default class App extends Component<AppProps, AppState> {
       this.setState({
         outputJson: msg.jqResult,
         errors: msg.error,
-        loading: false
+        loading: false,
+        filterStatus: msg.error ? "errored" : "clear"
       });
     });
     this.runJqFilter();
@@ -77,12 +80,12 @@ export default class App extends Component<AppProps, AppState> {
 
   runJqFilter = () => {
     const { inputJson, filter } = this.state;
-    this.setState({loading: true, errors: ""});
+    this.setState({loading: true, errors: "", filterStatus: "executed"});
     this.port.postMessage({ json: inputJson, filter: filter });
   }
 
   render() {
-    const { inputJson, outputJson, errors, filter, options, loading } = this.state;
+    const { inputJson, outputJson, errors, filter, filterStatus, options, loading } = this.state;
     const { documentUrl } = this.props;
     return <div>
       {!!this.state.loading && <LoadingBar /> }
@@ -95,7 +98,7 @@ export default class App extends Component<AppProps, AppState> {
         <div id="leftSideDiv" class="flex-column">
           <FilterHeaderBar filter={filter} documentUrl={documentUrl} updateFilter={this.updateFilter} />
           <div class="row">
-            <FilterBar filter={filter} updateFilter={this.updateFilter} />
+            <FilterBar filter={filter} updateFilter={this.updateFilter} filterStatus={filterStatus} />
             <Errors errors={errors} />
           </div>
         </div>

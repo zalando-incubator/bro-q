@@ -1,5 +1,6 @@
 import { h, Component } from 'preact';
 import BraceEditor from './Components/braceEditor';
+require('brace/ext/searchbox')
 import { Clipboard } from 'ts-clipboard';
 
 export interface InputOutputProps {
@@ -21,7 +22,7 @@ export default class InputOutput extends Component<InputOutputProps, InputOutput
     super(props);
 
     this.state = {
-      hideUnfilteredJson: props.options["hideUnfilteredJsonByDefault"] 
+      hideUnfilteredJson: props.options["hideUnfilteredJsonByDefault"]
     };
   }
 
@@ -30,6 +31,10 @@ export default class InputOutput extends Component<InputOutputProps, InputOutput
     const { hideUnfilteredJson } = this.state;
     const prettyInput = prettyJson(inputJson);
     const prettyOutput = prettyJson(outputJson);
+    // Remove extension specific options before passing to Brace 
+    // so that we don't get a misspelled option warning
+    delete options['liveUrlQuery'];
+    delete options['hideUnfilteredJsonByDefault'];
     const prettyOptions = options;
     return (
       <div class="row" id="editorDiv">
@@ -51,7 +56,7 @@ export default class InputOutput extends Component<InputOutputProps, InputOutput
           />
           <div id="outputToolbar" class="button-group">
             <button id="copy-json-editor-output" onClick={() => Clipboard.copy(outputJson)}>Copy</button>
-            <button id="outputDiv-fullscreen-button" onClick={() => this.setState({hideUnfilteredJson: !hideUnfilteredJson})}>{!!hideUnfilteredJson && "Show Unfiltered JSON" || "Hide Unfiltered JSON"}</button>
+            <button id="outputDiv-fullscreen-button" onClick={() => this.setState({ hideUnfilteredJson: !hideUnfilteredJson })}>{!!hideUnfilteredJson && "Show Unfiltered JSON" || "Hide Unfiltered JSON"}</button>
           </div>
         </div>
       </div>

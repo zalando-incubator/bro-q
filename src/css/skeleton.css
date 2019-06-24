@@ -660,13 +660,21 @@ button:active {
     margin-top: auto;
     height: 20px;
     display: inline-block;
-    color: red;
+    color: #990000;
 }
 
 #filter {
     font-size: 16px;
     width: 100%;
     margin-top: auto;
+}
+
+#filter.executed {
+    border: 3px solid #448abe
+}
+
+#filter.errored {
+    border: 2px solid #990000
 }
 
 #filterLabel {
@@ -782,23 +790,46 @@ button:active {
 .saved-filter-wrapper {
     display: flex;
     justify-content: space-between;
+    margin: 0.2em 0;
+}
+
+.saved-filter-wrapper:hover {
+    border-top: 1px dashed #999;
+    border-bottom: 1px dashed #999;
 }
 
 .saved-filter {
     display: inline-block;
-    margin: 1rem 0 2.5rem 0;
+    margin: 0.5rem;
     cursor: pointer;
     white-space: pre-wrap;
     flex-grow: 1;
+    padding: 0.25em;
 }
 
 .saved-filter:hover {
     background-color: lightgray;
 }
 
-.remove-filter {
+.saved-filter-wrapper > button {
     display: inline-block;
-    margin: 1rem 0 2.5rem 1.5rem;
+    visibility: hidden;
+    margin: 0.25rem;
+    padding: 0.3em;
+    height: auto;
+    line-height: normal;
+    background: #FF6666;
+    color: #FFF;
+    letter-spacing: normal;
+}
+
+.saved-filter-wrapper:hover > button:hover {
+    border: 1px solid #333 !important;
+    background: #990000 !important;
+}
+
+.saved-filter-wrapper:hover > button {
+    visibility: visible;
 }
 
 .hidden {
