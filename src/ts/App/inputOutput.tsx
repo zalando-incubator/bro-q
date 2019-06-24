@@ -30,6 +30,10 @@ export default class InputOutput extends Component<InputOutputProps, InputOutput
     const { hideUnfilteredJson } = this.state;
     const prettyInput = prettyJson(inputJson);
     const prettyOutput = prettyJson(outputJson);
+    // Remove extension specific options before passing to Brace 
+    // so that we don't get a misspelled option warning
+    delete options['liveUrlQuery'];
+    delete options['hideUnfilteredJsonByDefault'];
     const prettyOptions = options;
     return (
       <div class="row" id="editorDiv">
