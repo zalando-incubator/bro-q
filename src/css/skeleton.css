@@ -791,6 +791,8 @@ button:active {
     display: flex;
     justify-content: space-between;
     margin: 0.2em 0;
+    border-top: 1px solid #FFF;
+    border-bottom: 1px solid #FFF;
 }
 
 .saved-filter-wrapper:hover {
@@ -814,7 +816,7 @@ button:active {
 .saved-filter-wrapper > button {
     display: inline-block;
     visibility: hidden;
-    margin: 0.25rem;
+    margin: .5em 0.25rem;
     padding: 0.3em;
     height: auto;
     line-height: normal;

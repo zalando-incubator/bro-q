@@ -23,10 +23,6 @@ export default class FilterPicker extends Component<FilterPickerProps, FilterPic
     this.loadFilters();
   }
 
-  componentDidUpdate() {
-    this.loadFilters();
-  }
-
   loadFilters() {
     getFilters((filters) => {
       this.setState({
@@ -37,16 +33,25 @@ export default class FilterPicker extends Component<FilterPickerProps, FilterPic
 
   render(props: FilterPickerProps, { filters }: FilterPickerState) {
     if (filters === undefined) {
-      return; //waiting for filters to load
+      return; // waiting for filters to load
     } else if (filters.length === 0) {
-      alert('You don\'t have any saved filters yet.');
+      alert('You don\'t have any saved filters.');
+      props.close(); // close out the modal if its showing
       return;
     } else {
       return <Modal close={() => props.close()}>
         {filters.map(filter => (
           <div class='saved-filter-wrapper'>
             <pre class='saved-filter' onClick={() => props.close(filter)}>{filter}</pre>
-            <button label='Delete' onClick={() => this.deleteFilter(filter)}>X</button>
+            <button label='Delete' onClick={() => {
+                this.deleteFilter(filter);
+                // if there was only one filter left (that has now been deleted),
+                // make sure to close the modal
+                if(filters.length === 1) { 
+                  props.close()
+                }
+              }
+            }>X</button>
           </div>
         ))}
       </Modal>;
