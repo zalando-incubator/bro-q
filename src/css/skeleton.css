@@ -58,114 +58,145 @@
     .container {
         width: 80%;
     }
+
     .column,
     .columns {
         margin-left: 4%;
     }
+
     .column:first-child,
     .columns:first-child {
         margin-left: 0;
     }
+
     .one.column,
     .one.columns {
         width: 4.66666666667%;
     }
+
     .two.columns {
         width: 13.3333333333%;
     }
+
     .three.columns {
         width: 22%;
     }
+
     .four.columns {
         width: 30.6666666667%;
     }
+
     .five.columns {
         width: 39.3333333333%;
     }
+
     .six.columns {
         width: 48%;
     }
+
     .seven.columns {
         width: 56.6666666667%;
     }
+
     .eight.columns {
         width: 65.3333333333%;
     }
+
     .nine.columns {
         width: 74%;
     }
+
     .ten.columns {
         width: 82.6666666667%;
     }
+
     .eleven.columns {
         width: 91.3333333333%;
     }
+
     .twelve.columns {
         width: 100%;
         margin-left: 0;
     }
+
     .one-third.column {
         width: 30.6666666667%;
     }
+
     .two-thirds.column {
         width: 65.3333333333%;
     }
+
     .one-half.column {
         width: 48%;
     }
+
     /* Offsets */
     .offset-by-one.column,
     .offset-by-one.columns {
         margin-left: 8.66666666667%;
     }
+
     .offset-by-two.column,
     .offset-by-two.columns {
         margin-left: 17.3333333333%;
     }
+
     .offset-by-three.column,
     .offset-by-three.columns {
         margin-left: 26%;
     }
+
     .offset-by-four.column,
     .offset-by-four.columns {
         margin-left: 34.6666666667%;
     }
+
     .offset-by-five.column,
     .offset-by-five.columns {
         margin-left: 43.3333333333%;
     }
+
     .offset-by-six.column,
     .offset-by-six.columns {
         margin-left: 52%;
     }
+
     .offset-by-seven.column,
     .offset-by-seven.columns {
         margin-left: 60.6666666667%;
     }
+
     .offset-by-eight.column,
     .offset-by-eight.columns {
         margin-left: 69.3333333333%;
     }
+
     .offset-by-nine.column,
     .offset-by-nine.columns {
         margin-left: 78%;
     }
+
     .offset-by-ten.column,
     .offset-by-ten.columns {
         margin-left: 86.6666666667%;
     }
+
     .offset-by-eleven.column,
     .offset-by-eleven.columns {
         margin-left: 95.3333333333%;
     }
+
     .offset-by-one-third.column,
     .offset-by-one-third.columns {
         margin-left: 34.6666666667%;
     }
+
     .offset-by-two-thirds.column,
     .offset-by-two-thirds.columns {
         margin-left: 69.3333333333%;
     }
+
     .offset-by-one-half.column,
     .offset-by-one-half.columns {
         margin-left: 52%;
@@ -190,6 +221,9 @@ body {
     font-weight: 400;
     font-family: 'Raleway', 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     color: #222;
+    min-width: 1024px;
+    width: auto !important;
+    width: 1024px;
 }
 
 /* Typography
@@ -248,18 +282,23 @@ h6 {
     h1 {
         font-size: 5rem;
     }
+
     h2 {
         font-size: 4.2rem;
     }
+
     h3 {
         font-size: 3.6rem;
     }
+
     h4 {
         font-size: 3rem;
     }
+
     h5 {
         font-size: 2.4rem;
     }
+
     h6 {
         font-size: 1.5rem;
     }
@@ -813,7 +852,7 @@ button:active {
     background-color: lightgray;
 }
 
-.saved-filter-wrapper > button {
+.saved-filter-wrapper>button {
     display: inline-block;
     visibility: hidden;
     margin: .5em 0.25rem;
@@ -825,12 +864,12 @@ button:active {
     letter-spacing: normal;
 }
 
-.saved-filter-wrapper:hover > button:hover {
+.saved-filter-wrapper:hover>button:hover {
     border: 1px solid #333 !important;
     background: #990000 !important;
 }
 
-.saved-filter-wrapper:hover > button {
+.saved-filter-wrapper:hover>button {
     visibility: visible;
 }
 
@@ -841,50 +880,61 @@ button:active {
 /* Loading bar */
 @-webkit-keyframes animate-width {
     0% {
-      width: 0;
+        width: 0;
     }
+
     100% {
-      visibility: visible;
+        visibility: visible;
     }
 }
+
 @-moz-keyframes animate-width {
     0% {
-      width: 0;
+        width: 0;
     }
+
     100% {
-      visibility: visible;
+        visibility: visible;
     }
 }
+
 @keyframes animate-width {
     0% {
-      width: 0;
+        width: 0;
     }
+
     100% {
-      visibility: visible;
+        visibility: visible;
     }
 }
+
 @-webkit-keyframes animate-height {
     0% {
-      height: 0;
+        height: 0;
     }
+
     100% {
-      visibility: visible;
+        visibility: visible;
     }
 }
+
 @-moz-keyframes animate-height {
     0% {
-      height: 0;
+        height: 0;
     }
+
     100% {
-      visibility: visible;
+        visibility: visible;
     }
 }
+
 @keyframes animate-height {
     0% {
-      height: 0;
+        height: 0;
     }
+
     100% {
-      visibility: visible;
+        visibility: visible;
     }
 }
 
@@ -912,4 +962,3 @@ button:active {
     animation-fill-mode: forwards;
     -webkit-animation-fill-mode: forwards;
 }
-  
