@@ -1,5 +1,4 @@
 import checkIfJson from './util/check-if-json';
-import { checkStorageOptions } from './options';
 import App from './App';
 import { h, render } from "preact";
 
@@ -7,7 +6,6 @@ function onLoad() {
   checkIfJson((pre) => {
     pre.hidden = true;
 
-    checkStorageOptions();
     loadExtension(pre);
   });
 }

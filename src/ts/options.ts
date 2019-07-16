@@ -1,4 +1,3 @@
-import * as $ from 'jquery';
 import { saveStorage } from './storage';
 
 const aceThemePath = 'ace/theme/';
@@ -55,76 +54,89 @@ const defaultEditorOptions = {
   fixedWidthGutter: false,
   theme: themes.Default,
   fontSize: '14px',
-  fontFamily: 'Monaco, Menlo, "Ubuntu Mono", Consolas, source-code-pro, monospace',
+  fontFamily:
+    'Monaco, Menlo, "Ubuntu Mono", Consolas, source-code-pro, monospace',
   dragEnabled: true
 };
 
 const defaultCustomOptions = {
   liveUrlQuery: true,
-  hideUnfilteredJsonByDefault: false,
+  hideUnfilteredJsonByDefault: false
 };
 
-export const defaultOptions = Object.assign({}, defaultEditorOptions, defaultCustomOptions);
+export const defaultOptions = Object.assign(
+  {},
+  defaultEditorOptions,
+  defaultCustomOptions
+);
 
 export function checkStorageOptions() {
-  chrome.storage.sync.get(['options'], function (result) {
+  chrome.storage.sync.get(['options'], result => {
     if (result.options === undefined) {
       saveStorage(JSON.stringify(defaultOptions));
     }
   });
 }
 
-$(function () {
-  checkStorageOptions();
-  getOptions();
-});
-
 export function parseOptions(options: string) {
-  return Object.assign({}, defaultOptions, JSON.parse(options))
+  return Object.assign({}, defaultOptions, JSON.parse(options));
 }
 
 export function parseEditorOptions(options: string) {
   const parsedOptions = JSON.parse(options);
-  return Object.keys(defaultEditorOptions).reduce((accum, key) => (
-    Object.assign(accum, { [key]: parsedOptions[key] })
-  ), { ...defaultEditorOptions });
+  return Object.keys(defaultEditorOptions).reduce(
+    (accum, key) => Object.assign(accum, { [key]: parsedOptions[key] }),
+    { ...defaultEditorOptions }
+  );
 }
 
 function getOptions() {
-  chrome.storage.onChanged.addListener(function (changes) {
+  chrome.storage.onChanged.addListener(changes => {
     for (let key in changes) {
       if (key == 'options') {
         getOptions();
       }
     }
   });
-  chrome.storage.sync.get(['options'], function (result) {
+  chrome.storage.sync.get(['options'], result => {
     if (result.options != undefined) {
       const options = parseOptions(result.options);
-      $('#theme').val(
-        Object.keys(themes).find(key => themes[key] === options.theme)
+
+      (document.getElementById(
+        'theme'
+      ) as HTMLSelectElement).value = Object.keys(themes).find(
+        key => themes[key] === options.theme
       );
 
-      $('#font-size').val(options.fontSize.match(/\d/g).join(''));
-      $('#font-family').val(options.fontFamily);
+      (document.getElementById(
+        'font-size'
+      ) as HTMLInputElement).value = options.fontSize.match(/\d/g).join('');
+      (document.getElementById('font-family') as HTMLInputElement).value =
+        options.fontFamily;
 
       Object.keys(options).forEach(key => {
         let value = options[key];
         if (typeof value === 'boolean') {
-          $(`#${key}`).prop('checked', value);
+          (document.getElementById(
+            `${key}`
+          ) as HTMLInputElement).checked = value;
         }
       });
 
-      $('#save-btn').on("click", saveOptions);
-      $('#default-btn').on("click", () => {
-        saveStorage(JSON.stringify(defaultOptions));
-      });
+      (document.getElementById(
+        'save-btn'
+      ) as HTMLButtonElement).addEventListener('click', saveOptions);
+      (document.getElementById(
+        'default-btn'
+      ) as HTMLButtonElement).addEventListener('click', () =>
+        saveStorage(JSON.stringify(defaultOptions))
+      );
     }
   });
 }
 
 function saveOptions() {
-  chrome.storage.sync.get(['options'], function (result) {
+  chrome.storage.sync.get(['options'], result => {
     let currentOptions = result.options;
     if (currentOptions === null) {
       currentOptions = defaultOptions;
@@ -133,9 +145,15 @@ function saveOptions() {
     }
     let options = JSON.parse(JSON.stringify(currentOptions));
 
-    const themeInput = $('#theme option:selected').val();
-    let fontSizeInput = $('#font-size').val();
-    let fontFamilyInput = $('#font-family').val();
+    const themeInput = (document.querySelector(
+      '#theme option:checked'
+    ) as HTMLSelectElement).value;
+    let fontSizeInput = (document.getElementById(
+      'font-size'
+    ) as HTMLInputElement).value;
+    let fontFamilyInput = (document.getElementById(
+      'font-family'
+    ) as HTMLInputElement).value;
 
     options.theme = themes[themeInput.toString()];
 
@@ -150,7 +168,9 @@ function saveOptions() {
     Object.keys(options).forEach(key => {
       let value = options[key];
       if (typeof value === 'boolean') {
-        options[key] = $(`#${key}`).is(':checked');
+        options[key] = (document.querySelector(
+          `#${key}`
+        ) as HTMLInputElement).checked;
       }
     });
 
@@ -159,3 +179,6 @@ function saveOptions() {
     }
   });
 }
+
+checkStorageOptions();
+getOptions();

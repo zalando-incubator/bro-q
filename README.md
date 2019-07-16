@@ -4,7 +4,6 @@
 
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/stars/nimelepbpejjlbmoobocpfnjhihnpked.svg?style=for-the-badge)](https://goo.gl/c8SAF4)
 
-
 ## Chrome Web Store: https://goo.gl/c8SAF4
 
 Chrome Extension for JSON formatting and [jq](https://stedolan.github.io/jq/) filtering in your Browser.
@@ -13,7 +12,7 @@ If you want to contribute, please, read our [Contributing](CONTRIBUTING.md) guid
 
 ![Screenshot1](pictures/Main.png)
 
-![Screenshot2](pictures/second.png) 
+![Screenshot2](pictures/second.png)
 
 ## Features
 
@@ -31,7 +30,6 @@ If you want to contribute, please, read our [Contributing](CONTRIBUTING.md) guid
 
 ## How to install
 
-
 Chrome Web Store: https://goo.gl/c8SAF4
 
 or follow this steps:
@@ -46,7 +44,9 @@ or follow this steps:
 ```
 $ npm install
 ```
+
 or
+
 ```
 $ yarn install
 ```
@@ -56,38 +56,37 @@ $ yarn install
 ```
 $ npm run build
 ```
+
 or
+
 ```
 $ yarn build
 ```
 
 ## Dependencies
 
-Name | URL | License
----- | --- | -------
-babel-core | https://github.com/babel/babel/tree/master/packages/babel-core | MIT
-babel-loader | https://github.com/babel/babel-loader | MIT
-babel-preset-env | https://github.com/babel/babel-preset-env | MIT
-brace | https://github.com/thlorenz/brace | MIT
-copy-webpack-plugin | https://github.com/webpack-contrib/copy-webpack-plugin | MIT
-jq-web | https://github.com/fiatjaf/jq-web | ISC
-jquery | https://github.com/jquery/jquery | MIT
-moment | https://github.com/moment/moment | MIT
-wasm-loader | https://github.com/ballercat/wasm-loader | MIT
-@types/node | https://github.com/DefinitelyTyped/DefinitelyTyped | MIT
-@types/ace | https://github.com/DefinitelyTyped/DefinitelyTyped | MIT
-@types/chrome | https://github.com/DefinitelyTyped/DefinitelyTyped | MIT
-@types/jquery | https://github.com/DefinitelyTyped/DefinitelyTyped | MIT
-css-loader | https://github.com/webpack-contrib/css-loader | MIT
-style-loader | https://github.com/webpack-contrib/style-loader | MIT
-ts-loader | https://github.com/TypeStrong/ts-loader | MIT
-typescript | https://github.com/Microsoft/TypeScript | Apache-2.0
-webpack | https://github.com/webpack/webpack | MIT
-webpack-cli | https://github.com/webpack/webpack-cli | MIT
-chrome-extension-typescript-starter | https://github.com/chibat/chrome-extension-typescript-starter | MIT
-ts-clipboard | https://github.com/gforceg/ts-clipboard | MIT
-Skeleton | https://github.com/dhg/Skeleton/ | MIT
-
+| Name                                | URL                                                            | License    |
+| ----------------------------------- | -------------------------------------------------------------- | ---------- |
+| babel-core                          | https://github.com/babel/babel/tree/master/packages/babel-core | MIT        |
+| babel-loader                        | https://github.com/babel/babel-loader                          | MIT        |
+| babel-preset-env                    | https://github.com/babel/babel-preset-env                      | MIT        |
+| brace                               | https://github.com/thlorenz/brace                              | MIT        |
+| copy-webpack-plugin                 | https://github.com/webpack-contrib/copy-webpack-plugin         | MIT        |
+| jq-web                              | https://github.com/fiatjaf/jq-web                              | ISC        |
+| moment                              | https://github.com/moment/moment                               | MIT        |
+| wasm-loader                         | https://github.com/ballercat/wasm-loader                       | MIT        |
+| @types/node                         | https://github.com/DefinitelyTyped/DefinitelyTyped             | MIT        |
+| @types/ace                          | https://github.com/DefinitelyTyped/DefinitelyTyped             | MIT        |
+| @types/chrome                       | https://github.com/DefinitelyTyped/DefinitelyTyped             | MIT        |
+| css-loader                          | https://github.com/webpack-contrib/css-loader                  | MIT        |
+| style-loader                        | https://github.com/webpack-contrib/style-loader                | MIT        |
+| ts-loader                           | https://github.com/TypeStrong/ts-loader                        | MIT        |
+| typescript                          | https://github.com/Microsoft/TypeScript                        | Apache-2.0 |
+| webpack                             | https://github.com/webpack/webpack                             | MIT        |
+| webpack-cli                         | https://github.com/webpack/webpack-cli                         | MIT        |
+| chrome-extension-typescript-starter | https://github.com/chibat/chrome-extension-typescript-starter  | MIT        |
+| ts-clipboard                        | https://github.com/gforceg/ts-clipboard                        | MIT        |
+| Skeleton                            | https://github.com/dhg/Skeleton/                               |  MIT       |
 
 ## Contact
 

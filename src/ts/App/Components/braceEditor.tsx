@@ -79,6 +79,8 @@ export default class BraceEditor extends Component<BraceProps, BraceState> {
     editor.$blockScrolling = Infinity;
     editor.resize(true);
     editor.setShowPrintMargin(false);
+
+    console.log(options);
     editor.setOptions({
       ...options
     });

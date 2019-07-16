@@ -4,8 +4,9 @@
   "description": "bro-q",
   "main": "index.js",
   "scripts": {
-    "build": "rm -fr dist && webpack --mode production",
-    "watch": "./node_modules/.bin/webpack -w"
+    "clean": "rm -rf dist",
+    "build": "npm run clean && webpack --mode production",
+    "watch": "npm run clean && ./node_modules/.bin/webpack -w"
   },
   "author": "michele@zalando.de",
   "license": "MIT",
@@ -16,7 +17,6 @@
   "dependencies": {
     "brace": "0.11.1",
     "jq-web": "0.3.3",
-    "jquery": "3.4.1",
     "lodash": "4.17.14",
     "moment": "2.24.0",
     "preact": "8.4.2",
@@ -26,7 +26,6 @@
   "devDependencies": {
     "@types/ace": "0.0.42",
     "@types/chrome": "~0.0.86",
-    "@types/jquery": "~3.3.30",
     "@types/lodash": "^4.14.136",
     "@types/node": "^12.6.3",
     "babel-core": "^6.26.3",
