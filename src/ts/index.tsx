@@ -1,11 +1,15 @@
+import { h, render } from 'preact';
 import checkIfJson from './util/check-if-json';
 import App from './App';
-import { h, render } from "preact";
+import { checkStorageOptions } from './storage';
+import {
+  defaultEditorOptions,
+} from './editorConfig';
 
 function onLoad() {
   checkIfJson((pre) => {
     pre.hidden = true;
-
+    checkStorageOptions(defaultEditorOptions);
     loadExtension(pre);
   });
 }
