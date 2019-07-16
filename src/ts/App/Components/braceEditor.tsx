@@ -71,13 +71,14 @@ export default class BraceEditor extends Component<BraceProps, BraceState> {
   componentDidMount() {
     const {
       name,
-      options
+      options,
+      value
     } = this.props;
     const editor = brace.edit(name);
+    editor.setValue(value);
     editor.getSession().setMode('ace/mode/json');
     editor.setTheme(options.theme || DEFAULT_THEME);
     editor.$blockScrolling = Infinity;
-    editor.resize(true);
     editor.setShowPrintMargin(false);
     editor.setOptions({
       ...options
