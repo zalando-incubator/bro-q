@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "bro/q",
   "description": "Chrome Extension for JSON formatting and jq filtering in Browser",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "browser_action": {
     "default_icon": "pages/assets/icon128.png"
   },
