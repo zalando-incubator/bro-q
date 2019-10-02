@@ -19,7 +19,7 @@
     "jq-web": "0.5.0",
     "lodash": "4.17.15",
     "moment": "2.24.0",
-    "preact": "8.5.1",
+    "preact": "10.0.0",
     "ts-clipboard": "1.0.17",
     "wasm-dce": "1.0.2"
   },
