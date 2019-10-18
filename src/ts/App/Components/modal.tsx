@@ -1,4 +1,4 @@
-import { h, Component } from 'preact';
+import { h, JSX } from 'preact';
 export interface ModalProps {
   close: ()=>void;
   children?: JSX.Element[];
