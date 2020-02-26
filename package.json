@@ -27,7 +27,7 @@
     "@types/ace": "0.0.42",
     "@types/chrome": "~0.0.96",
     "@types/lodash": "^4.14.149",
-    "@types/node": "^13.7.4",
+    "@types/node": "^13.7.6",
     "babel-core": "^6.26.3",
     "babel-loader": "^8.0.6",
     "babel-preset-env": "^1.7.0",
