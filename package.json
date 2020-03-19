@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "@types/ace": "0.0.42",
-    "@types/chrome": "~0.0.96",
+    "@types/chrome": "~0.0.101",
     "@types/lodash": "^4.14.149",
     "@types/node": "^13.7.4",
     "babel-core": "^6.26.3",
