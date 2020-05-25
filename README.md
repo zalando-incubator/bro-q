@@ -1,5 +1,7 @@
 # bro/q
 
+## **Please follow this fork https://github.com/mrandi/bro-q**
+
 ![icon](src/pages/assets/icon128.png)
 
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/stars/nimelepbpejjlbmoobocpfnjhihnpked.svg?style=for-the-badge)](https://goo.gl/c8SAF4)
